@@ -3,6 +3,7 @@ package lrd.parcial.lord.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -64,6 +65,31 @@ public class OrderController {
     @GetMapping("/order/delete/{id}")
     public String deleteOrder(@PathVariable Long id) {
         service.deleteOrder(id);
+        return "redirect:/order";
+    }
+
+
+    @GetMapping("/order/edit/{id}")
+    public String showFormToEdit(@PathVariable Long id, Model model) {
+
+        model.addAttribute("order", service.getOrderById(id));
+
+        return "order/order_editar";
+    }
+
+
+    @PostMapping("/ordered/{id}")
+    public String updateOrder(@PathVariable Long id, @ModelAttribute("commercial") Order order,
+            Model model) {
+
+        Order oldOrder = service.getOrderById(id);
+
+        oldOrder.setId(id);
+        oldOrder.setAmount(order.getAmount());
+    
+
+        service.editOrder(oldOrder);
+
         return "redirect:/order";
     }
 

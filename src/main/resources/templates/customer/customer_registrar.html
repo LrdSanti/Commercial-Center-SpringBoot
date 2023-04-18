@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{base/base}"></html>
+<head th:replace="base/base.html :: head">
+<body>
+<!--    Register Modal-->
+<div th:fragment="registerCustomerModal" class="modal fade" id="registerCustomerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="text-gray-900 mb-12 title-modal">Add a new customer!</h1>
+        <button class="btn-close"  data-bs-dismiss="modal"></button>
+      </div>
+      <form class="user form-register" th:action="@{/register}" th:object="${customer}" method="POST">
+        <label class="form-group label-form">
+          <label class="label-lform">Nombre Cliente : </label>
+          <input type="text" name="name" th:field="*{name}" class="form-control form-control-user input-form" placeholder="Digite el nombre del cliente : " required>
+        </label>
+        <label class="form-group label-form">
+          <label class="label-lform">Apellido Cliente : </label>
+          <input type="text" th:field="*{lastName1}" class="form-control form-control-user input-form" placeholder="First Last Name : " required>
+        </label>
+        <label class="form-group label-form">
+          <label  class="label-lform">Secondary Last Name : </label>
+          <input type="text" th:field="*{lastName2}" class="form-control form-control-user input-form" placeholder="Secondary Last Name : " required >
+        </label>
+        <label class="form-group label-form">
+          <label  class="label-lform">City : </label>
+          <input type="text" th:field="*{city}" class="form-control form-control-user input-form" placeholder="Type your City : " required >
+        </label>
+        <label class="form-group label-form">
+          <label  class="label-lform">Category : </label>
+          <input type="number" th:field="*{category}" class="form-control form-control-user input-form" placeholder="Type your Category : " required >
+        </label>
+         <label class="form-group label-form">
+          <label  class="label-lform">Fecha : </label>
+          <input type="date"  class="form-control form-control-user input-form" placeholder="Digite la fecha : ">
+        </label> 
+        <label class="form-group justify-content-around">
+          <button class="btn btn-danger" type="button" data-bs-dismiss="modal" onclick="resetForm()">Dismiss</button>
+          <button class="btn btn-success" onclick="resetForm()">Add</button>
+        </label>
+      </form>
+      <script>
+        function resetForm() {
+          document.getElementById("registerCustomerModal").reset();
+        }
+      </script>
+    </div>
+  </div>
+</div>
+<!--    End Register Modal-->
+
+</body>
+</html>

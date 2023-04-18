@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{base/base}"></html>
+<head th:replace="base/base.html :: head">
+<body>
+
+    
+    <div class="container">
+        
+
+        <div class="row">
+
+            <div class="col-md-4">
+                
+            </div>
+            <div class="col-md-4 text-center" >
+                <h1>ADD A NEW ORDER</h1>
+                  <form class="user form-register" th:action="@{/saveorder}" th:object="${order}" method="POST">
+
+
+                    <br/>
+        <label class="form-group label-form">
+          <label class="label-lform">Amount </label>
+          <input type="number" name="amount" th:field="*{amount}" class="form-control form-control-user input-form" placeholder="Type the amount : " required>
+        </label>
+
+        <label class="form-group label-form">
+          <label  class="label-lform">Date : </label>
+          <input type="date"  class="form-control form-control-user input-form" placeholder="Type the date: ">
+        </label>  
+
+        
+        <br/>
+        <label class="form-group label-form">
+            <br/>
+        <label class="label-lform">Choose a customer: </label>
+        
+          <select th:field="*{customer}" name="customers" >
+
+              <option th:each="customer: ${customers}" th:value="${customer.id}" th:text="${customer.name}" required></option>
+
+          </select>
+
+      </label>  
+      <br/>
+        <label class="form-group label-form">
+            
+        <label class="label-lform">Choose a Commercial: </label>
+        
+          <select th:field="*{commercial}" name="commercials" >
+
+              <option th:each="commercial: ${commercials}" th:value="${commercial.id}" th:text="${commercial.name}" required></option>
+
+          </select>
+
+      </label>  
+       
+        
+         <br/>
+
+        <label class="form-group justify-content-around">
+            <br/>
+          <a class="btn btn-danger" type="button" th:href="@{/order}">Dismiss</a>
+
+          <button class="btn btn-success" onclick="resetForm()">Add</button>
+        </label>
+        </form>  
+            </div>
+            <div class="col-md-4">
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <div th:replace="base/base.html :: page-scripts">
+    </div>
+    
+
+      
+</body>
+</html>
+

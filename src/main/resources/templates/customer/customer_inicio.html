@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{base/base}"></html>
+<head th:replace="base/base.html :: head">
+<body>
+   
+    <div class="d-flex" id="wrapper" th:fragment="sidebar">
+      <!-- Sidebar-->
+      <div class="border-end bg-white" id="sidebar-wrapper">
+        <div class="sidebar-heading border-bottom bg-light">
+          Customers
+        </div>
+        <div class="list-group list-group-flush">
+            
+          <a
+            class="list-group-item list-group-item-action list-group-item-light p-3"
+            th:href="@{/}"
+            >Beginning</a
+          >
+          <a
+            class="list-group-item list-group-item-action list-group-item-light p-3"
+            th:href="@{/commercial}"
+            >Manage Commercials</a
+          >
+          <a
+            class="list-group-item list-group-item-action list-group-item-light p-3 active-button"
+            th:href="@{/customer}"
+            >Manage Customers</a
+          >
+          <a
+            class="list-group-item list-group-item-action list-group-item-light p-3"
+            th:href="@{/order}"
+            >Manage Orders</a
+          >
+          <a
+            class="list-group-item list-group-item-action list-group-item-light p-3"
+            th:href="@{/filter}"
+            >Print All Customers-Orders</a
+          >
+          
+        </div>
+      </div>
+      <!-- Page content wrapper-->
+      <div id="page-content-wrapper" th:fragment="wrapper">
+        <!-- Top navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+          <div class="container-fluid">
+            
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                  <a class="nav-link" th:href="@{/}">Inicio</a>
+                </li>
+                
+                <!-- <li class="nav-item"><a class="nav-link" href="#!">Clientes</a></li> -->
+                
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <!-- Page content-->
+        <div class="container-fluid text-center" th:fragment="page-content" >
+
+             <br/>
+
+             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerCustomerModal">Add New Customer </button>
+             <div class="card-body">
+                
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable">
+                                <thead>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Customer Name</th>
+                                    <th>First Last Name</th>
+                                    <th>Secondary Last Name</th>
+                                    <th>City</th>
+                                    <th>Category</th>
+                                    <th>Orders</th>
+                                    <th>Acciones</th>
+                                </tr>
+                                </thead>
+                                <tfoot>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Customer Name</th>
+                                    <th>First Last Name</th>
+                                    <th>Secondary Last Name</th>
+                                    <th>City</th>
+                                    <th>Category</th>
+                                    <th>Orders</th>
+                                    <th>Acciones</th>
+                                </tr>
+                                </tfoot>
+                                <tbody>
+                                 <tr th:each="customer : ${customers}">
+                                    <td th:text="${customer.id}"></td>
+                                    <td th:text="${customer.name}"></td>
+                                    <td th:text="${customer.lastName1}"></td>
+                                    <td th:text="${customer.lastName2}"></td>
+                                    <td th:text="${customer.city}"></td>
+                                    <td th:text="${customer.category}"></td>
+                                     <td>
+
+                                      <!-- BOTON DE MOSTRAR ORDENES -->
+                                        <a class="btn btn-success" th:href="@{/customer/editar/{id}(id=${customer.id})}" data-toggle="modal" data-target="#updateCustomerModal">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-certificate" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                                            <path d="M5 8v-3a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5" />
+                                            <circle cx="6" cy="14" r="3" />
+                                            <path d="M4.5 17l-1.5 5l3 -1.5l3 1.5l-1.5 -5" />
+                                            </svg>
+                                           
+                                        </a>
+                                    </td>
+                                    <td>
+                                     
+                                      <!-- BOTON DE EDITAR -->
+                                        <a class="btn btn-warning" 
+                                        th:href="@{/customer/editar/{id}(id=${customer.id})}">
+                                         
+                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                            <path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />
+                                            <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" />
+                                            <line x1="16" y1="5" x2="19" y2="8" />
+                                            </svg>
+                                        </a>
+                                        <!-- BOTON ELMINAR -->
+                                        <a class="btn btn-info btn-danger" th:href="@{/customers/{id} (id=${customer.id})}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eraser" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                            <path d="M19 19h-11l-4 -4a1 1 0 0 1 0 -1.41l10 -10a1 1 0 0 1 1.41 0l5 5a1 1 0 0 1 0 1.41l-9 9" />
+                                            <line x1="18" y1="12.3" x2="11.7" y2="6" />
+                                            </svg>
+                                        </a>
+
+                                    </td>
+
+                                   
+                                </tr> 
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+         </div>
+
+        </div>
+
+
+        </div>
+    </div>
+
+
+
+    <div th:replace="base/base.html :: page-scripts">
+    </div>
+
+    <div th:replace="customer/customer_registrar.html :: #registerCustomerModal"> </div>
+
+
+
+  
+<!--    End Register Modal-->
+
+
+</body>
+</html>

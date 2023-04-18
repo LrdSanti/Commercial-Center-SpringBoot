@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{base/base}"></html>
+<head th:replace="base/base.html :: head">
+<body>
+
+    
+
+    <div class="d-flex" id="wrapper" th:fragment="sidebar">
+      <!-- Sidebar-->
+      <div class="border-end bg-white" id="sidebar-wrapper">
+        <div class="sidebar-heading border-bottom bg-light">
+          Customers-Orders
+        </div>
+        <div class="list-group list-group-flush">
+          <a
+            class="list-group-item list-group-item-action list-group-item-light p-3 "
+            th:href="@{/}"
+            >Beginning</a
+          >
+          <a
+            class="list-group-item list-group-item-action list-group-item-light p-3"
+            th:href="@{/commercial}"
+            >Manage Commercials</a
+          >
+          <a
+            class="list-group-item list-group-item-action list-group-item-light p-3 "
+            th:href="@{/customer}"
+            >Manage Customers</a
+          >
+          <a
+            class="list-group-item list-group-item-action list-group-item-light p-3"
+            th:href="@{/order}"
+            >Manage Orders</a
+          >
+
+          <a
+            class="list-group-item list-group-item-action list-group-item-light p-3 active-button"
+            th:href="@{/filter}"
+            >Print All Customers-Orders</a
+          >
+          
+        </div>
+      </div>
+      <!-- Page content wrapper-->
+      <div id="page-content-wrapper" th:fragment="wrapper">
+        <!-- Top navigation-->
+        <nav
+          class="navbar navbar-expand-lg navbar-light bg-light border-bottom"
+        >
+          <div class="container-fluid">
+            
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#!">Inicio</a>
+                </li>
+                
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <!-- Page content-->
+        <div class="container-fluid text-center" th:fragment="page-content" >
+
+             <br/>
+                <h1> Customers with active orders and without orders</h1>
+             <div class="card-body">
+                
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable">
+                                <thead>
+                                <tr>
+                                    <th>Code Customer</th>
+                                    <th>Customer Name</th>
+                                    <th>City</th>
+                                    <th>First Last Name</th>
+                                    <th>Secondary Last Name</th>
+                                    <th>Category</th>
+                                    <th>Code Order</th>
+                                    <th>Amount</th>
+                                    <th>Date</th>
+                                </tr>
+                                </thead>
+                                <tfoot>
+                                <tr>
+                                    <th>Code Customer</th>
+                                    <th>Customer Name</th>
+                                    <th>City</th>
+                                    <th>First Last Name</th>
+                                    <th>Secondary Last Name</th>
+                                    <th>Category</th>
+                                    <th>Code Order</th>
+                                    <th>Amount</th>
+                                    <th>Date</th>
+                                </tr>
+                                </tfoot>
+                                <tbody>
+                                 <tr th:each="customer : ${customers}">
+                                    <td th:text="${customer[0]}"></td>
+                                    <td th:text="${customer[1]}"></td>
+                                    <td th:text="${customer[2]}"></td>
+                                    <td th:text="${customer[3]}"></td>
+                                    <td th:text="${customer[4]}"></td>
+                                    <td th:text="${customer[5]}"></td>
+                                    <td th:text="${customer[6]}"></td>
+                                    <td th:text="${customer[7]}"></td>
+                                    <td th:text="${customer[8]}"></td>
+                                   
+                                    
+
+                                   
+                                </tr> 
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+         </div>
+    </div>
+    
+
+    
+
+
+    <div th:replace="base/base.html :: page-scripts">
+    </div>
+
+    
+</body>
+</html>

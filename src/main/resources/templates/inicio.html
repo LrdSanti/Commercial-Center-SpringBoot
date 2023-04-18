@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{base/base}"></html>
+<head th:replace="base/base.html :: head">
+<body>
+
+    
+
+    <div class="d-flex" id="wrapper" th:fragment="sidebar">
+      <!-- Sidebar-->
+      <div class="border-end bg-white" id="sidebar-wrapper">
+        <div class="sidebar-heading border-bottom bg-light">
+          Centro Comercial
+        </div>
+        <div class="list-group list-group-flush">
+          <a
+            class="list-group-item list-group-item-action list-group-item-light p-3 active-button"
+            th:href="@{/}"
+            >Beginning</a
+          >
+          <a
+            class="list-group-item list-group-item-action list-group-item-light p-3"
+            th:href="@{/commercial}"
+            >Manage Commercials</a
+          >
+          <a
+            class="list-group-item list-group-item-action list-group-item-light p-3 "
+            th:href="@{/customer}"
+            >Manage Customers</a
+          >
+          <a
+            class="list-group-item list-group-item-action list-group-item-light p-3"
+            th:href="@{/order}"
+            >Manage Orders</a
+          >
+
+          <a
+            class="list-group-item list-group-item-action list-group-item-light p-3"
+            th:href="@{/filter}"
+            >Print All Customers-Orders</a
+          >
+          
+        </div>
+      </div>
+      <!-- Page content wrapper-->
+      <div id="page-content-wrapper" th:fragment="wrapper">
+        <!-- Top navigation-->
+        <nav
+          class="navbar navbar-expand-lg navbar-light bg-light border-bottom"
+        >
+          <div class="container-fluid">
+            
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#!">Inicio</a>
+                </li>
+                
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <!-- Page content-->
+        <div class="container-fluid" th:fragment="page-content">
+
+            <br/>
+            <div class="card">
+                <div class="card-header">
+                    Santiago Hernandez Perez - Tu Gestor Favorito
+                </div>
+
+                <div class="card-body text-center">
+                    <h5 class="card-title">Gestiona tu Centro Comercial</h5>
+                    <p class="card-text">Para iniciar y ver las posibles opciones da click en desplegar Menu</p>
+                    <button class="btn btn-success" id="sidebarToggle">
+              Desplegar Menu
+            </button>
+                </div>
+    </div>
+        </div>
+
+
+        </div>
+    </div>
+    
+
+    
+
+
+    <div th:replace="base/base.html :: page-scripts">
+    </div>
+
+    
+</body>
+</html>

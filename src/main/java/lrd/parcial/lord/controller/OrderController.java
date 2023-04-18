@@ -3,6 +3,7 @@ package lrd.parcial.lord.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import lrd.parcial.lord.model.entity.Order;
@@ -53,10 +54,16 @@ public class OrderController {
     }
     
     @PostMapping({"/saveorder"})
-    public String saveOrder(Order order){
+    public String saveOrder(Order order) {
 
         service.saveOrder(order);
 
+        return "redirect:/order";
+    }
+    
+    @GetMapping("/order/delete/{id}")
+    public String deleteOrder(@PathVariable Long id) {
+        service.deleteOrder(id);
         return "redirect:/order";
     }
 

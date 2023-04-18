@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org/%22%3E">
+<head th:insert="base/base.html :: head">
+    <title>Customer | 500</title>
+</head>
+<body>
+  <h3>Ha ocurrido un error !Oops</h3>
+  <p th:text="${error}"></p>
+  <p th:text="${message}"></p>
+  <p th:text="${status}"></p>
+  <p th:text="${timestamp}"></p>
+  <hr>
+  <p th:text="${trace}"></p>
+  <!-- Bootstrap core JavaScript-->
+  <script th:src="@{vendor/jquery/jquery.min.js}"></script>
+  <script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script th:src="@{vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script th:src="@{js/sb-admin-2.min.js}"></script>
+</body>
+</html>

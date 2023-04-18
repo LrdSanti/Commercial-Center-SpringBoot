@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org/%22%3E">
+<head th:replace="base/base.html :: head">
+    <title>Commercial | 404</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- 404 Error Text -->
+        <div class="text-center">
+            <p class="text-gray-500 mb-0">Ha ocurrido un error !Oops.....</p>
+            <div class="error mx-auto" data-text="404" th:text="${status}"></div>
+            <p class="lead text-gray-800 mb-5" th:text="${error}"></p>
+            <p class="lead text-gray-800 mb-5" th:text="${timestamp}"></p>
+            <a th:href="@{/index}">&larr; Back to Dashboard</a>
+            <hr>
+            <p th:text="${path}"></p>
+        </div>
+    </div>
+    <!-- Bootstrap core JavaScript-->
+    
+</body>
+</html>
